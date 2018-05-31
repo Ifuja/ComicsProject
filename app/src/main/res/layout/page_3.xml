@@ -21,6 +21,7 @@
         tools:ignore="HardcodedText" />
 
     <Button
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,6 +31,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/comics"/>
+        android:src="@drawable/comics" />
 
 </RelativeLayout>

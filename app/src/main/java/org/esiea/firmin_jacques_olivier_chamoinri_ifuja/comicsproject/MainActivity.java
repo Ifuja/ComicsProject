@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,12 +19,16 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private RequestQueue requestQueue;
+    private TextView mTextViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mTextViewResult = findViewById(R.id.text_view_result);
+        Button buttonchoisirlescomics= findViewById(R.id.button_choisir_les_comics);
 
         String URL="https://comicvine.gamespot.com/api/volumes/?api_key=8687da03d4d13477b19303ae25f9c24c09b02467&format=json";
 
@@ -48,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue.add(objectRequest);
 
-
     }
+
     public void page1(View view) {
         startActivity(new Intent(this, page_2.class));
     }
