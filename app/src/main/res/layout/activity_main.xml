@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dcvsmarvel">
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,13 +17,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bienvenue_sur_notre_application"
-            android:textSize="35sp"
             android:gravity="center"
+            android:text="@string/bienvenue_sur_notre_application"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHighlight="@android:color/holo_blue_dark"
+            android:textSize="24sp"
             tools:ignore="HardcodedText" />
 
         <Button
-            style="@android:style/Widget.Holo.Light.Button.Toggle"
+            style="@android:style/Widget.Button.Inset"
+
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -29,13 +35,7 @@
             android:text="@string/menu"
             android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:src="@drawable/comics"
-            android:visibility="visible" />
+
     </LinearLayout>
 
 </RelativeLayout>

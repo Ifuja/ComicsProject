@@ -1,12 +1,24 @@
 package org.esiea.firmin_jacques_olivier_chamoinri_ifuja.comicsproject;
 
+import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,35 +40,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTextViewResult = findViewById(R.id.text_view_result);
-        Button buttonchoisirlescomics= findViewById(R.id.button_choisir_les_comics);
 
-        String URL="https://comicvine.gamespot.com/api/volumes/?api_key=8687da03d4d13477b19303ae25f9c24c09b02467&format=json";
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity.this)
+                .setSmallIcon(R.drawable.comics)
+                .setContentTitle("ComicsProject")
+                .setContentText("Alert");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
+        notificationManager.notify(0, mBuilder.build());
 
-        JsonObjectRequest objectRequest=new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                            Log.e("Rest Response", response.toString()) ;
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                            Log.e("Rest Response", error.toString()) ;
-                    }
-                }
-        );
 
-        requestQueue.add(objectRequest);
+
 
     }
+
 
     public void page1(View view) {
-        startActivity(new Intent(this, page_2.class));
+        Intent i = new Intent(this, page_2.class);
+        this.startActivity(i);
     }
+
+    public void Showdialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Attention");
+        builder.setMessage("Voulez vous quitter l'application?");
+        builder
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        moveTaskToBack(true);
+                        System.exit(1);
+                    }
+                })
+                .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+        builder.create().show();
+    }
+
 }
